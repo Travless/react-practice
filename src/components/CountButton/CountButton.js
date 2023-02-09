@@ -1,25 +1,22 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useReducer } from 'react';
 import './CountButton.css'
 
 const CountButton = (props) => {
-    console.log(props)
     const [currentCount, setCurrentCount] = useState(0);
     
 
     const handleClick = () => {
         setCurrentCount(currentCount + props.incrementBy);
     }
-    // style object, must be written with object syntax
-    const divStyle = {
-        color: 'blue',
-    }
 
-    const buttonStyle = {
-        background: props.buttonColor,
-    }
+    useEffect(() => {
+        if(currentCount === 10){
+            alert("the count is 10")
+        }
+    }, [currentCount])
 
-    return <div style={divStyle}>
-        <button style={buttonStyle} onClick={handleClick}>+{props.incrementBy}</button>
+    return <div>
+        <button onClick={handleClick}>+{props.incrementBy}</button>
         <div className='count-display' >{currentCount}</div>
     </div>
 }
